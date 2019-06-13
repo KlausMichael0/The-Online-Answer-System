@@ -1,0 +1,30 @@
+{% extends 'first/index.html' %}
+{% block main-content %}
+    <section class="section-features js--section-features">
+        <div class="row">
+            <h2 class="big-title" style="color: #aa0000">Here is your student's unsolved questions.</h2>
+        </div>
+
+        <div class="row">
+                <div class="col span-1-of-2 box">
+                    <i class="ion-ios-nutrition-outline icon-big"></i>
+                    <h3 style="color: red; font-size: 30px">The Unsolved Qustions</h3>
+                    <div class="col Unsolved">
+                    {% for question in question_list %}
+                        {% if question.finished == 0 %}
+                            <p style="font-weight: bolder;font-size: 24px;color: black"><a href="/detail/{{ question.id }}/" style="border: none">{{ question.title }}</a></p>
+                            <p style="font-size: 18px;color: rgba(47,47,47,0.73)">{{ question.summary }}</p>
+                            <p><span style="font-size: 16px;color: red; font-weight: bolder">[Unsolved]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: blue">{{ question.category }}</span> </p>
+                            <p style="font-size: 16px"><span style="color: hotpink; font-weight: bolder">{{ question.author }}</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Date:{{ question.publish_date }}</p>
+                            <p>&nbsp;</p>
+                        {% endif %}
+                    {% endfor %}
+                    </div>
+                </div>
+        </div>
+        </section>
+{% endblock %}
+
+
+
+

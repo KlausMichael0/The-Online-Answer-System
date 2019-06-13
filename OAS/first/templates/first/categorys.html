@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="/static/vendors/css/ionicons.min.css">
+        <link rel="stylesheet" href="/static/resources/css/harvard.min.css">
+        <link rel="stylesheet" href="/static/resources/css/style-2.css">
+        <link href="https://fonts.googleapis.com/css?family=Lato:100,300,300italic,400" rel="stylesheet">
+        <title>OAS-based on Web</title>
+    </head>
+
+    <body>
+ <section class="first-header">
+            <nav class="sticky">
+                <div class="row">
+                    <p class="logo-black">
+                        {% if user.is_authenticated %}
+                            Welcome,{{ user_detail.user }}
+                        {% else %}
+                            Online-Answer-System
+                        {% endif %}
+                    </p>
+
+                        <ul class="main-nav">
+                            <li><a href="/">All</a></li>
+                            {% if user_detail.instr == 0 %}
+                                <li><a href="/issue/">Ask</a></li>
+                                <li><a href="/myquestion/">My Ques</a></li>
+                            {% endif %}
+                            <li><a href="/choice_cate/">Collages</a></li>
+                            {% if user.is_authenticated %}
+                                <li><a href="/logout/">Out</a></li>
+                                <li><a href="/password_view/">change_pwd</a></li>
+                                {% if numbers is not 0 %}
+                                    {% if user_detail.instr == 1 %}
+                                        <li style="color: red"><a href="/hint/">@me({{ numbers }})</a></li>
+                                    {% endif %}
+                                {% endif %}
+                                {% else %}
+                                    <li><a href="/login_view/">Log</a></li>
+                            {% endif %}
+                        </ul>
+                </div>
+            </nav>
+        </section>
+
+        <section>
+            <article role="article" class="spec-art wrapper wrapper--2-down">
+        	  <div class="region region-content">
+                <div id="block-system-main" class="block block-system">
+                    <div class="content">
+                        <div id="node-18" class="node node-page clearfix 11" about="/schools" typeof="foaf:Document">
+                            <span property="dc:title" content="Schools" class="rdf-meta element-hidden"></span>
+                                <div class="content">
+                                    <div class="field field-name-body field-type-text-with-summary field-label-hidden"><div class="field-items"><div class="field-item even" property="content:encoded"><p>University of Science and Technology Beijing has 10 degree-granting schools in addition to the Radcliffe Institute for Advanced Study. The University has grown from 5000 students to an enrollment of more than 25,000 degree candidates including undergraduate, graduate, and professional students.</p>
+                                        <ul class="grid grid--2 list-clean grid--school-blocks">
+                                            <li class="w-50"><a href="/category/1/" class="school-block content-area" ><span class="school-block__logo"><img src="/static/resources/css/img/harvard-business.png" alt="Harvard Business School Shield"></span> <span class="school-block__title link-cta"><span class="spec-title link-cta__text">Business School</span></span> </a> </li>
+                                            <li class="w-50"><a href="/category/2/" class="school-block content-area"><span class="school-block__logo"><img src="/static/resources/css/img/harvard-dental.png" alt="Harvard School of Dental Medicine Shield"></span> <span class="school-block__title link-cta"><span class="spec-title link-cta__text">School of Dental Medicine</span></span></a></li>
+                                            <li class="w-50"><a href="/category/3/" class="school-block content-area"><span class="school-block__logo"><img src="/static/resources/css/img/harvard-divinity.png" alt="Harvard Divinity School Shield"></span> <span class="school-block__title link-cta"><span class="spec-title link-cta__text">Divinity School</span></span> </a> </li>
+                                            <li class="w-50"><a href="/category/4/" class="school-block content-area"><span class="school-block__logo"><img src="/static/resources/css/img/harvard-fac.png" alt="HarvardFaculty of Arts &amp; Sciences Shield"></span> <span class="school-block__title link-cta"><span class="spec-title link-cta__text">Arts and Sciences</span></span> </a> </li>
+                                            <li class="w-50"><a href="/category/5/" class="school-block content-area"><span class="school-block__logo"><img src="/static/resources/css/img/harvard-design.png" alt="Harvard Graduate School of Design Shield"></span> <span class="school-block__title link-cta"><span class="spec-title link-cta__text">Design</span></span> </a> </li>
+                                            <li class="w-50"><a href="/category/6/" class="school-block content-area"><span class="school-block__logo"><img src="/static/resources/css/img/harvard-gedu.png" alt="Harvard Graduate School of Education Shield"></span> <span class="school-block__title link-cta"><span class="spec-title link-cta__text">Architecture</span></span> </a> </li>
+                                            <li class="w-50"><a href="/category/7/" class="school-block content-area"><span class="school-block__logo"><img src="/static/resources/css/img/harvard-gsas.png" alt="Graduate School of Arts &amp; Sciences Shield"></span> <span class="school-block__title link-cta"><span class="spec-title link-cta__text">Chemistry</span></span> </a> </li>
+                                            <li class="w-50"><a href="/category/8/" class="school-block content-area"><span class="school-block__logo"><img src="/static/resources/css/img/harvard-engineering.png" alt="School of Engineering and Applied Sciences Shield"></span> <span class="school-block__title link-cta"><span class="spec-title link-cta__text">Engineering and Applied Sciences</span></span> </a> </li>
+                                            <li class="w-50"><a href="/category/9/" class="school-block content-area"><span class="school-block__logo"><img src="/static/resources/css/img/harvard-medical.png"></span> <span class="school-block__title link-cta"><span class="spec-title link-cta__text">Mathematical</span></span> </a> </li>
+                                            <li class="w-50"><a href="/category/10/" class="school-block content-area"><span class="school-block__logo"><img src="/static/resources/css/img/harvard-health.png" alt="Harvard T.H. Chan School of Public Health Shield"></span> <span class="school-block__title link-cta"><span class="spec-title link-cta__text">Metallurgy</span></span> </a> </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>  
+                            </div> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+		</article>
+    </section>
+
+
+        <footer>
+            <div class="row1">
+
+                <div class="">
+                    <ul class="footer-nav">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">ios App</a></li>
+                        <li><a href="#">Android App</a></li>
+                    </ul>
+                </div>
+                <div class="spec-icon">
+                    <ul class="social-links">
+                        <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                        <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                        <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="row1">
+                <p class="spec-p">
+                    Copyright &copy; 2019 by OAS-Team. All right reserved.
+                </p>
+
+            </div>
+        </footer>
+    </body>
+
+
+
+</html>
+

@@ -1,0 +1,187 @@
+{% extends 'first/index.html' %}
+{% load comments %}
+{% block main-content %}
+        
+    <section class="section-features js--section-features">
+    <script type="text/javascript" src="/static/tinymce/js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript">
+            tinyMCE.init({
+            selector : "textarea",
+            theme: "modern",
+            plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor"
+            ],
+            toolbar1: "insertfile undo redo | styleselect | bold italic | align aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            toolbar2: "print preview media | forecolor backcolor emoticons",
+            image_advtab: true,
+            visualblocks_default_state: true,
+            forced_root_block:'',
+            width: 950,
+            height: 300,
+            content_css: "/static/blog/css/tinymce.css"
+            });
+        </script>
+
+            <div class="row">
+                <h2 class="big-title">{{ question_detail.title }}</h2>
+                <div class="row">
+                {% if question_detail.finished == 1 %}
+                    <p class="col" style="color: green; font-size: 25px; font-weight: bolder">[Solved]</p>
+                {% else %}
+                    <p class="col" style="color: red;font-size: 25px; font-weight: bolder">[Unsolved]</p>
+                {% endif %}
+
+                {% if question_detail.finished == 0 and question_detail.author.id == user_detail.id%}
+                <form method="post" action="/finish/" class="col contact-form" style="margin-left:150px">
+
+                    <div class="row">
+                        <input type="hidden" name="Question_id" value="{{ question_detail.id }}" />
+                    </div>
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label>&nbsp;</label>
+                        </div>
+                        <div class="padding-right">
+                            <input type="submit" value="I understand">
+                        </div>
+                    </div>
+                </form>
+                {% endif %}
+
+                </div>
+                <p class="detail-content-de" style="font-weight: bolder;font-size: 29px; color: gray">Summary：{{ question_detail.summary|safe }}</p>
+                <p>&nbsp;</p>
+                <p class="detail-content-de" style="font-weight: bolder;font-size: 25px">Detail：{{ question_detail.content|safe }}</p>
+                <p>&nbsp;</p>
+                <p class="detail-content-de" style="font-weight: bolder;font-size: 21px; color: hotpink">Author：{{ question_detail.author }}</p>
+                <p>&nbsp;</p>
+                <hr>
+            </div>
+
+
+                    <div class="row">
+                {%get_comment_list for question_detail as comment_list%}
+
+                        {%for comment in comment_list%}
+                            {% if comment.ip_address == '1' %}
+                                <div>
+                               <div class="row" style="margin: 20px 0px;">
+                                <p style="font-size: 30px;"><span style="font-weight: bolder; color: red; font-size: 24px">{{comment.user_name}}</span>:
+                                    {{comment.comment|safe}}
+                                <br>
+                                <span style="font-size: 18px; color: grey; float:left;">({{comment.submit_date|date:"F,j,Y"}})</span>
+                                </p>
+                                </div>
+                                </div>
+                            {% endif %}
+
+                            {% if comment.ip_address == '0' %}
+                                <div>
+                                <div class="row" style="margin: 20px 0px;">
+                                    <p style="font-size: 30px; float: right;">
+                                        {{comment.comment|safe}}:
+                                    <span style="font-weight: bolder; color: blue; font-size: 24px">{{comment.user_name}}</span>
+                                    <br>
+                                    <span style="font-size: 18px; color: grey; float: right;">({{comment.submit_date|date:"F,j,Y"}})</span>
+                                    </p>
+                                </div>
+                                </div>
+                            {% endif %}
+                        {%endfor%}
+            </div>
+
+
+            {% if user_detail.id == question_detail.author.id and question_detail.finished == 0%}
+            <div class="row">
+                <form method="post" action="/reply/" class="contact-form1">
+                    <div class="row">
+                          <input type="hidden" name="Question_id" value="{{ question_detail.id }}" />
+                    </div>
+
+                    <div class="row">
+                        <div class="col span-1-of-2">
+                            <textarea name="comment"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label>&nbsp;</label>
+                        </div>
+                        <div class="col span-2-of-3 spec-reply">
+                            <input type="submit" value="Reply">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            {% endif %}
+
+        {% if user_detail.instr == 1 and question_detail.finished == 0%}
+            <div class="row">
+
+                <form method="post" action="/reply/" class="contact-form1">
+                    <div class="row">
+                          <input type="hidden" name="Question_id" value="{{ question_detail.id }}" />
+                    </div>
+
+                    <div class="row">
+                        <div class="col span-2-of-3">
+                            <textarea name="comment"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col span-1-of-3">
+                            <label>&nbsp;</label>
+                        </div>
+                        <div class="col span-2-of-3 spec-reply">
+                            <input type="submit" value="Reply">
+                        </div>
+                    </div>
+                    </form>
+            </div>
+        {% endif %}
+        </section>
+        {% endblock %}
+
+        <footer>
+            <div class="row">
+                <div class="col span-1-of-2">
+                    <ul class="footer-nav">
+                        <li><a href="#">About us</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">ios App</a></li>
+                        <li><a href="#">Android App</a></li>
+                    </ul>
+                </div>
+                <div class="col span-1-of-2">
+                    <ul class="social-links">
+                        <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                        <li><a href="#"><i class="ion-social-twitter"></i></a></li>
+                        <li><a href="#"><i class="ion-social-googleplus"></i></a></li>
+                        <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <p>
+                    Copyright &copy; 2019 by OAS-Team. All right reserved.
+                </p>
+            </div>
+        </footer>
+
+    </body>
+
+
+
+</html>
+
+
+
+
+
+

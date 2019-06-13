@@ -1,0 +1,108 @@
+{% extends 'first/index.html' %}
+{% block main-content %}
+
+    <section class="section-form">
+
+        <script type="text/javascript" src="/static/tinymce/js/tinymce/tinymce.min.js"></script>
+        <script type="text/javascript">
+            tinyMCE.init({
+            selector : "textarea",
+            theme: "modern",
+            plugins: [
+            "advlist autolink lists link image charmap print preview hr anchor pagebreak",
+            "searchreplace wordcount visualblocks visualchars code fullscreen",
+            "insertdatetime media nonbreaking save table contextmenu directionality",
+            "emoticons template paste textcolor"
+            ],
+            toolbar1: "insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image",
+            toolbar2: "print preview media | forecolor backcolor emoticons",
+            image_advtab: true,
+            visualblocks_default_state: true,
+            forced_root_block:'',
+            width: 603.094,
+            height: 200,
+            content_css: "/static/blog/css/tinymce.css"
+            });
+        </script>
+
+        <div class="row">
+            <h2>You can post your question now!</h2>
+        </div>
+        <div class="row">
+            <form method="post" action="/submit/" class="contact-form">
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="question_title">Title</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input class="spe_input" type="text" name="question_title" id="name" placeholder="The Title" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="question_summary">Summary</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input class="spe_input" type="text" name="question_summary" id="text" placeholder="The Summary" required>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label>Content</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <textarea name="sub_content"></textarea>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="cate">Choice Question's college</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <select class="spe_input" name="cate" id="find-us">
+                            {% for cate in category_list %}
+                            <option value ="{{ cate.id }}">{{ cate }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label for="instr">Choice your teacher</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <select class="spe_input" name="instr" id="find-us">
+                            {% for instr in instr_list %}
+                            <option value ="{{ instr.id }}">{{ instr }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col span-1-of-3">
+                        <label>&nbsp;</label>
+                    </div>
+                    <div class="col span-2-of-3">
+                        <input type="submit" value="Done!">
+                    </div>
+                    </div>
+            </form>
+        </div>
+    </section>
+
+
+            {% if messages %}
+        <script>
+            {% for message in messages %}
+            alert( "{{ message.message }}" );
+            {% endfor %}
+        </script>
+        {% endif %}
+{% endblock %}
+
+        
+        
+       
