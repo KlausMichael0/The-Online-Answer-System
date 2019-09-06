@@ -29,4 +29,4 @@
   - `file->setting->project`，在`project interpreter`中选择python版本并点击ok即可
 - 新项目导入好后，所有数据是没有的，本地我们需要创建admin
   - `python manage.py createsuperuser`
-  - 在pycharm右上角运行项目，进入`http://127.0.0.1:8000/admin/admin`，即可进入管理项目
+  - 在pycharm右上角运行项目，进入`http://127.0.0.1:8000/admin`，即可进入管理项目
