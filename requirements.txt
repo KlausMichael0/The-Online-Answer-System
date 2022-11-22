@@ -9,7 +9,7 @@ django-contrib-comments==1.9.1
 docopt==0.6.2
 idna==2.8
 multidict==4.5.2
-Pillow==6.0.0
+Pillow==9.3.0
 pipreqs==0.4.9
 pymysql==0.9.3
 pytz==2019.1
